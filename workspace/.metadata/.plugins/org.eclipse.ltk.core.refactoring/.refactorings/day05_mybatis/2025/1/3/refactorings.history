@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;MyBatisConfig.java&apos; to &apos;day05_mvcTest/src/main/java/com.mybatis.config&apos;&#x0D;&#x0A;- Original project: &apos;day05_mybatis&apos;&#x0D;&#x0A;- Destination element: &apos;day05_mvcTest/src/main/java/com.mybatis.config&apos;&#x0D;&#x0A;- Original element: &apos;com.mybatis.config.MyBatisConfig.java&apos;" description="Copy compilation unit" destination="=day05_mvcTest/src\/main\/java&lt;com.mybatis.config" element1="/src\/main\/java&lt;com.mybatis.config{MyBatisConfig.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1737006145747" units="1" version="1.0"/>
+</session>

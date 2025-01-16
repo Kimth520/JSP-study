@@ -1,0 +1,8 @@
+SELECT sysdate FROM dual;
+
+CREATE TABLE tbl_user(
+	user_number NUMBER,
+	user_id varchar2(10),
+	user_pw varchar2(20),
+	user_name varchar2(100),
+)

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.servlet.app&apos; to &apos;com.servletTask.app&apos;&#x0D;&#x0A;- Original project: &apos;day02_task&apos;&#x0D;&#x0A;- Original element: &apos;day02_task/src/main/java/com.servlet.app&apos;&#x0D;&#x0A;- Renamed element: &apos;day02_task/src/main/java/com.servletTask.app&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.servlet.app&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;com.servlet.app" name="com.servletTask.app" qualified="false" references="true" stamp="1736754258315" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,20 @@
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="MyServlet1" method="get">
+		<label for="name">이름 : </label>
+		<input type="text" id="name" name ="name" placeholder="이름 입력" required>
+		<br>
+		<label for="age">나이 (Get)</label>
+		<input type="text" id="age" name = "age" placeholder="나이 입력" required>
+		<button type= "submit">접속</button>
+	</form>
+
+</body>
+</html>

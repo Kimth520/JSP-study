@@ -1,0 +1,14 @@
+SELECT *FROM TBL_MEMBER tm ;
+
+INSERT INTO TBL_MEMBER tm 
+values(seq_member.nextval, '태현');
+INSERT INTO TBL_MEMBER 
+values(2, '철수');
+
+UPDATE TBL_MEMBER 
+SET MEMBER_ID = 10
+WHERE member_name = '철수';
+
+DELETE FROM TBL_MEMBER tm ;
+
+DROP TABLE TBL_MEMBER ;
