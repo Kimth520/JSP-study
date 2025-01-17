@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.example.app.dto.MemberDTO;
-import com.mybatis.config.MyBatisConfig;
+import com.example.app.Result;
 
 /**
  * Servlet implementation class MemberFrontController
@@ -43,8 +40,8 @@ public class MemberFrontController extends HttpServlet {
     */
    protected void doPost(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
+      request.setCharacterEncoding("UTF-8"); //한글깨짐 방지
       doProcess(request, response);
-      
    }
 
    // get과 post를 구분하지 않고 사용할 것이다
@@ -62,6 +59,8 @@ public class MemberFrontController extends HttpServlet {
       // 우리가 필요한 것은 전체 URI에서 ContextPath를 제외시킨 부분이다
       String target = request.getRequestURI().substring(request.getContextPath().length());
       System.out.println(target);
+      
+      Result result = null; //+++++
 
       switch (target) {
       case "/member/join.me":
@@ -70,22 +69,12 @@ public class MemberFrontController extends HttpServlet {
          break;
       case "/member/joinOk.me":
          System.out.println("joinOk!!");
-         //sqlSession을 ㅇ용한다
+         //sqlSession을 이용한다
+         result = new JoinOkController().execute(request, response);
+         System.out.println(result); //com.example.app.Result@9b75736
+         System.out.println(result.getPath() + "==========");
          
-         MemberDTO memberDTO = new MemberDTO();
-         System.out.println(memberDTO);
-         memberDTO.setMemberId(request.getParameter("memberId"));
-         memberDTO.setMemberPassword(request.getParameter("memberPassword"));
-         memberDTO.setMemberName(request.getParameter("memberName"));
-         memberDTO.setMemberAge(Integer.valueOf(request.getParameter("memberAge")));
-         //valueOf() 문자열을 Integer타입으로 바꿔준다.
-         //parseInt()와의 차이는 parseInt()는 문자열이 숫자가 아닐 경우 numberFormatException이 발생하지만 valueOf()는 null을 반환한다(즉, 예외발생안함)
-         memberDTO.setMemberGender(request.getParameter("memberGender"));
-         
-         SqlSession sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
-         sqlSession.insert("member.join", memberDTO);
-         response.sendRedirect(request.getContextPath());
-         
+//         response.sendRedirect(request.getContextPath());
          break;
       // Ok가 필요한 이유는 회원가입 페이지로 단순히 이동하는 것과 회원가입을 처리하는 URL을 나누기 위함이다
       case "/member/login.me":
@@ -94,8 +83,16 @@ public class MemberFrontController extends HttpServlet {
          break;
       case "/member/loginOk.me":
          System.out.println("loginOk!!");
-         response.sendRedirect(request.getContextPath());
+         result = new LoginOkController().execute(request, response);
          break;
+      }
+      
+      if(result != null) {
+         if(result.isRedirect()) {
+            response.sendRedirect(result.getPath());
+         }else {
+            request.getRequestDispatcher(result.getPath()).forward(request, response);
+         }
       }
 
    }

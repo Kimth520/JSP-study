@@ -1,0 +1,11 @@
+<header>
+	<nav class="navbar">
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/index.jsp"></a></li>
+			<c:if test = ${empty sessionScope.member}>
+			
+			
+			</c:if>		
+		</ul>
+	</nav>
+</header>
