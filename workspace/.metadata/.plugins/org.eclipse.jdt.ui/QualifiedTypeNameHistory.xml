@@ -7,7 +7,22 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
     <fullyQualifiedTypeName name="javax.annotation.Resources"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
     <fullyQualifiedTypeName name="com.example.app.dto.MemberDTO"/>
     <fullyQualifiedTypeName name="com.mybatis.config.MyBatisConfig"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="com.example.app.Result"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
+    <fullyQualifiedTypeName name="java.awt.dnd.DropTargetContext"/>
+    <fullyQualifiedTypeName name="com.example.app.member.LoginOkController"/>
+    <fullyQualifiedTypeName name="net.nurigo.java_sdk.api.Message"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.Executor"/>
+    <fullyQualifiedTypeName name="com.google.gson.JsonObject"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="com.google.gson.JsonElement"/>
+    <fullyQualifiedTypeName name="com.google.gson.JsonParser"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>

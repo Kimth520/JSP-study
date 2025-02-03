@@ -1,0 +1,6 @@
+package com.example.app.member;
+
+public class JoinSMSController implements Execute{
+	
+
+}

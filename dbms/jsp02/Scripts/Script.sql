@@ -29,6 +29,7 @@ CREATE TABLE tbl_member(
 
 SELECT * FROM tbl_member;
 
+
 CREATE SEQUENCE seq_member START WITH 1 INCREMENT BY 1
 nocache  --시퀀스 값을 미리 메모리에 캐싱하지 않도록 설정
 nocycle; --최대갑셍 도달하면 재시작하지 않도록 설정
