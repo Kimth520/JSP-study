@@ -3,36 +3,31 @@
 <mapper namespace="board">
 	<!-- 전체 게시글 조회 -->
 	<select id="selectAll" resultType="BoardListDTO">
-        <![CDATA[
-        SELECT *
+    <![CDATA[
+    SELECT * FROM (
+        SELECT ROWNUM AS rnum, subquery.*
         FROM (
-            SELECT ROWNUM AS rnum, subquery.*
-            FROM (
-                SELECT 
-                    m.member_number,
-                    m.member_id,
-                    b.board_number,
-                    b.board_title,
-                    b.board_content,
-                    b.board_date,
-                    b.board_read_count
-                FROM tbl_member m
-                JOIN tbl_board b ON m.member_number = b.member_number
-                ORDER BY b.board_date DESC
-            ) subquery
-            WHERE ROWNUM <= #{endRow}
-        )
-        WHERE rnum > #{startRow}
-        ]]>
+            SELECT 
+                m.member_number,
+                m.member_id,
+                b.board_number,
+                b.board_title,
+                b.board_content,
+                b.board_date,
+                b.board_read_count
+            FROM tbl_member m
+            JOIN tbl_board b ON m.member_number = b.member_number
+            ORDER BY b.board_date DESC
+        ) subquery
+    ) WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    ]]>
 	</select>
 
 	<!-- BoardMapper.xml에 total을 가져오기 위한 쿼리 작성 -->
 	<!-- 게시글 총 개수 -->
 	<select id="getTotal" resultType="int">
-        <![CDATA[
-        SELECT COUNT(board_number) 
-        FROM tbl_board
-        ]]>
+		SELECT COUNT(board_number)
+		FROM tbl_board
 	</select>
 
 
@@ -46,17 +41,18 @@
 		조합해 자동으로 시퀀스 값을 객체 필드에 매핑가능 -->
 	<!-- 게시글 추가 -->
 	<insert id="insert" parameterType="BoardDTO">
+		<selectKey keyProperty="boardNumber" resultType="int"
+			order="BEFORE">
+			SELECT seq_board.nextVal from dual
+		</selectKey>
 		INSERT INTO tbl_board
 		(board_number, board_title, board_content, member_number)
 		VALUES
-		(seq_board.NEXTVAL, #{boardTitle}, #{boardContent}, #{memberNumber})
+		(#{boardNumber}, #{boardTitle}, #{boardContent}, #{memberNumber})
 	</insert>
 
-	<!-- 마지막 생성된 시퀀스 값을 가져오는 쿼리 -->
-	<select id="getCurrentBoardNumber" resultType="int">
-		SELECT
-		seq_board.CURRVAL FROM DUAL
-	</select>
+	<!-- 마지막 생성된 시퀀스 값을 가져오는 쿼리 <select id="getCurrentBoardNumber" resultType="int"> 
+		SELECT seq_board.CURRVAL FROM DUAL </select> -->
 
 	<select id="select" parameterType="int"
 		resultType="BoardListDTO">

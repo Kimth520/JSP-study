@@ -16,56 +16,43 @@ public class BoardDAO {
 		sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
 	}
 
-	// 모든 게시글 가져오기
-	public List<BoardListDTO> selectAll(Map<String, Integer> pageMap) {
-//	    System.out.println("DAO selectAll 실행");
-//	    System.out.println("pageMap: " + pageMap);
+	//모든 게시글 가져오기
+	public List<BoardListDTO> selectAll(Map<String, Integer> pageMap){
+		System.out.println("모든 게시글 조회하기 - selectAll 메소드 실행" + pageMap);
 		List<BoardListDTO> list = sqlSession.selectList("board.selectAll", pageMap);
-//	    System.out.println("조회 결과: " + list);
+		System.out.println("조회결과 : " + list);
 		return list;
 	}
-
-	// 게시글 총 개수 가져오기
+	
+	//게시글 총 개수 가져오기
 	public int getTotal() {
 		return sqlSession.selectOne("board.getTotal");
 	}
-
-	/*
-	 * public void insert(BoardDTO boardDTO) { sqlSession.insert("board.insert",
-	 * boardDTO); }
-	 */
-
-	// 게시글 추가 후 자동 생성된 boardNumber 반환
+	
+	//게시글 추가 후 자동으로 생성된 boardNumber 반환 - 파일테이블에서도 써야되기때문에 사용
 	public int insertBoard(BoardDTO boardDTO) {
-		// INSERT 실행
-		sqlSession.insert("board.insert", boardDTO);
-
-		// CURRVAL을 사용하여 마지막 생성된 시퀀스 값 가져오기
-		int boardNumber = sqlSession.selectOne("board.getCurrentBoardNumber");
-		boardDTO.setBoardNumber(boardNumber);
-		System.out.println("마지막 생성된 값 : " + boardNumber);
-		return boardNumber;
+		int insert = sqlSession.insert("board.insert", boardDTO);
+		System.out.println(boardDTO + "출력====");
+		System.out.println(boardDTO.getBoardContent() + "출력====");
+		System.out.println(boardDTO.getBoardTitle() + "출력====");
+		System.out.println("=== 게시글 작성 DAO ===");
+		System.out.println("insert : " + insert);
+		System.out.println("==========");
+		System.out.println("생성된 boardNumber : " + boardDTO.getBoardNumber());
+		return boardDTO.getBoardNumber();
 	}
-
+	
+	//게시글 상세 페이지 조회 메소드
 	public BoardListDTO select(int boardNumber) {
+		System.out.println("디테일 페이지 쿼리");
 		return sqlSession.selectOne("board.select", boardNumber);
 	}
-
+	
+	//조회수 증가 메소드
 	public void updateReadCount(int boardNumber) {
-		sqlSession.update("board.updateReadCount", boardNumber);
+		System.out.println("조회수 업데이트 실행 " + boardNumber);
+		int result = sqlSession.update("board.updateReadCount", boardNumber);
+		System.out.println("조회수 업데이트 결과 : " + result);
 	}
 	
-	public void delete(int boardNumber) {
-		sqlSession.delete("board.delete", boardNumber);
-	}
-	
-	public void update(BoardDTO boardDTO) {
-		sqlSession.update("board.update", boardDTO);
-	}
-	
-	public BoardListDTO selectOne(int boardNumber) {
-	    return sqlSession.selectOne("board.selectOne", boardNumber);
-	}
-
-
 }

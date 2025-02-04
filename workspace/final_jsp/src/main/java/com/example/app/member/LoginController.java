@@ -28,7 +28,7 @@ public class LoginController implements Execute {
 		}
 		
 		result.setPath("/app/member/login.jsp");
-		result.setRedirect(false);
+		result.setRedirect(false); //forward로 처리했다
 		return result;
 	}
 

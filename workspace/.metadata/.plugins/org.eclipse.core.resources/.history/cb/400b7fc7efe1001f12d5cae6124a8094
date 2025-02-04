@@ -1,7 +1,0 @@
-package com.example.app.member;
-
-import java.util.concurrent.Executor;
-
-public class VerifyCodeController implements Execute{
-
-}

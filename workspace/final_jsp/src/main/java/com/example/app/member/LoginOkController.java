@@ -37,7 +37,7 @@ public class LoginOkController implements Execute {
 			session.setAttribute("memberNumber", memberNumber); // ++++++++++
 			System.out.println("세션값 : " + memberNumber);
 
-			if (remember != null) {
+			if (remember != null) {	//쿠키값
 				Cookie cookie = new Cookie("memberId", memberId);
 				cookie.setMaxAge(60 * 60 * 24);
 				response.addCookie(cookie);
@@ -48,7 +48,7 @@ public class LoginOkController implements Execute {
 		}
 
 //		response.sendRedirect(path);
-		result.setRedirect(true);
+		result.setRedirect(false); //세션은 리다이렉트가 되면 사라진다 우리는 유지를 해야한다 그래서 false로 바꿔줘야한다
 		result.setPath(path);
 		return result;
 	}
