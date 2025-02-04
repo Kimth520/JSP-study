@@ -1,7 +1,0 @@
-package com.example.app.member;
-
-import com.example.app.Execute;
-
-public class LoginOkController implements Execute{
-
-}

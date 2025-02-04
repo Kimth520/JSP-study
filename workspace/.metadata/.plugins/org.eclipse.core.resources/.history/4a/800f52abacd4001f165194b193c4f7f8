@@ -1,7 +1,0 @@
-<header>
-	<nav class="navbar">
-		<ul>
-			<li><a href="${pageContext.request.contextPath}/index.jsp"></a></li>		
-		</ul>
-	</nav>
-</header>
